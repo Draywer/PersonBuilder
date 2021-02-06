@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>PersonBuilder</name>
-    <url>http://www.idcore.re</url>
+    <url>http://www.idcore.ru</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
