@@ -8,11 +8,15 @@ public class Person {
     protected int age;
     protected String address;
 
-    Person (PersonBuilder personBuilder) {
-        this.name = personBuilder.name;
-        this.surname = personBuilder.surname;
-        this.age = personBuilder.age;
-        this.address = personBuilder.address;
+    public Person(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public Person(String name, String surname, int age, String address) {
+        this(name, surname);
+        this.age = age;
+        this.address = address;
     }
 
     public String getName() {
@@ -47,8 +51,10 @@ public class Person {
         return address != null;
     }
 
-    public PersonBuilder newChildBuilder(String name) {
-        return new PersonBuilder(name, this.surname);
+    public PersonBuilder newChildBuilder() {
+        return new PersonBuilder()
+                .setSurname(surname)
+                .setAddress(address);
     }
 
     @Override

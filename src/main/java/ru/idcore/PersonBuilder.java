@@ -1,22 +1,24 @@
 package ru.idcore;
 
 public class PersonBuilder implements IPersonBuilder{
-    protected final String name;
-    protected final String surname;
+    protected String name;
+    protected String surname;
     protected int age;
     protected String address;
 
-    public PersonBuilder(String name, String surname) {
+
+    public PersonBuilder setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public PersonBuilder setSurname(String surname) {
         this.surname = surname;
+        return this;
     }
 
     public PersonBuilder setAge(int age) {
-        if (age > 0) {
-            this.age = age;
-        } else {
-            throw new IllegalStateException("Возраст должен быть больше нуля");
-        }
+        this.age = age;
         return this;
     }
 
@@ -27,6 +29,15 @@ public class PersonBuilder implements IPersonBuilder{
 
     @Override
     public Person build() {
-        return new Person(this);
+        if (name == null) {
+            throw new IllegalStateException("Ошибка! Необходимо указать имя");
+        }
+        if (surname == null) {
+            throw new IllegalStateException("Ошибка! Необходимо указать фамилию");
+        }
+        if (age <= 0) {
+            throw new IllegalStateException("Ошибка! Некорректный возраст");
+        }
+        return new Person(name, surname, age, address);
     }
 }
